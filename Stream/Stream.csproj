@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<LangVersion>11</LangVersion>
+	<AssemblyName>ModUpdater.$(MSBuildProjectName)s</AssemblyName>
+	<RootNamespace>ModUpdater.$(MSBuildProjectName.Replace(" ", "_"))s</RootNamespace>
+  </PropertyGroup>
+
+</Project>
