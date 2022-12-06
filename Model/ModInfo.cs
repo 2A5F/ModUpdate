@@ -1,4 +1,8 @@
-﻿namespace ModUpdater.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace ModUpdater.Model;
 
 public class ModInfo
 {
@@ -23,3 +27,12 @@ public enum ModOper
     /// </summary>
     Disable,
 }
+
+public class ModInfoSerPack
+{
+    public Dictionary<string, ModInfo> dict { get; set; } = null!;
+    public IEnumerable<ModInfo> modInfos { get; set; } = null!;
+}
+
+[JsonSerializable(typeof(ModInfoSerPack), GenerationMode = JsonSourceGenerationMode.Metadata)]
+public partial class ModInfoSerPackJsonContext : JsonSerializerContext { }

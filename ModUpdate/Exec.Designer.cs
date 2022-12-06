@@ -80,9 +80,6 @@ partial class Exec
             // 
             // TheTable
             // 
-            this.TheTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TheTable.AutoSize = true;
             this.TheTable.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TheTable.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -90,14 +87,14 @@ partial class Exec
             this.TheTable.ColumnCount = 3;
             this.TheTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.TheTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.TheTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
+            this.TheTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
             this.TheTable.Controls.Add(this.label3, 1, 0);
             this.TheTable.Controls.Add(this.label2, 0, 0);
             this.TheTable.Location = new System.Drawing.Point(3, 3);
             this.TheTable.Name = "TheTable";
             this.TheTable.RowCount = 1;
             this.TheTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TheTable.Size = new System.Drawing.Size(239, 29);
+            this.TheTable.Size = new System.Drawing.Size(240, 29);
             this.TheTable.TabIndex = 0;
             // 
             // label3
@@ -140,7 +137,7 @@ partial class Exec
             // 
             // TheProgressTip
             // 
-            this.TheProgressTip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TheProgressTip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TheProgressTip.AutoSize = true;
             this.TheProgressTip.Location = new System.Drawing.Point(16, 523);
             this.TheProgressTip.Name = "TheProgressTip";

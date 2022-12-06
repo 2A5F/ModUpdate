@@ -1,5 +1,6 @@
 ﻿using ModUpdater.Model;
 using ModUpdater.Streams;
+using ModUpdaterServer.Model;
 using Serilog;
 using System.Buffers;
 using System.IO.Enumeration;
@@ -56,13 +57,13 @@ if (!File.Exists(config_file_path))
     }
 
     using var fs = File.Open(config_file_path, FileMode.Create);
-    await JsonSerializer.SerializeAsync(fs, config, new JsonSerializerOptions() { WriteIndented = true });
+    await JsonSerializer.SerializeAsync(fs, config, new SerPackJsonContext(new JsonSerializerOptions() { WriteIndented = true }).ConfigModel);
     await fs.FlushAsync();
 }
 else
 {
     using var fs = File.OpenRead(config_file_path);
-    config = (await JsonSerializer.DeserializeAsync<ConfigModel>(fs))!;
+    config = (await JsonSerializer.DeserializeAsync(fs, SerPackJsonContext.Default.ConfigModel))!;
 }
 
 Console.Clear();
@@ -227,7 +228,7 @@ async Task ClientService(TcpClient client)
                     {
                         Log.Information("{ep} ({id}) 请求了 mod 列表", remote, con_id);
                         using var ms = new MemoryStream();
-                        await JsonSerializer.SerializeAsync(ms, modlist.Values);
+                        await JsonSerializer.SerializeAsync(ms, modlist.Values, ModInfoSerPackJsonContext.Default.IEnumerableModInfo);
                         BitConverter.TryWriteBytes(op_buf.AsSpan(0, sizeof(int)), (int)ms.Length);
                         await stream.WriteAsync(op_buf.AsMemory(0, sizeof(int)));
                         ms.Position = 0;
@@ -244,7 +245,7 @@ async Task ClientService(TcpClient client)
                             client.Close();
                             return;
                         }
-                        var path_parts = await JsonSerializer.DeserializeAsync<string[]>(new ReadOnlySubStream(stream, len));
+                        var path_parts = await JsonSerializer.DeserializeAsync(new ReadOnlySubStream(stream, len), ModInfoSerPackJsonContext.Default.StringArray);
                         var path = Path.Combine(path_parts!);
                         if (!modlist.TryGetValue(path, out var info))
                         {
